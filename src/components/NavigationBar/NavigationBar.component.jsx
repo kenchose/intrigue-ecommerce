@@ -1,15 +1,19 @@
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-import { ReactComponent as IntrigueLogo } from "../../assets/crown-logo.svg";
-
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { UserContext } from "../contexts/User.context";
+import { CartContext } from "../contexts/Cart.context";
 
+import CartIcon from "../CartIcon/CartIcon.component";
+import CartDropdown from "../CartDropdowm/CartDropdown.component";
+
+import { ReactComponent as IntrigueLogo } from "../../assets/crown-logo.svg";
 import "./NavigationBar.styles.scss";
 
 const NavigationBar = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
@@ -34,7 +38,9 @@ const NavigationBar = () => {
               LOGIN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>
