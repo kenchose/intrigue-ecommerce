@@ -5,10 +5,10 @@ import {
   loginWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
-import "./LoginForm.styles.scss";
+import * as sc from "./LoginForm.styles";
 
 import FormInput from "../FormInput/FormInput.component";
-import Button from "../Button/Button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 
 const defaultFormFields = {
   email: "",
@@ -25,7 +25,6 @@ const LoginForm = () => {
 
   const loginWithGoogle = async () => {
     await signInWithGooglePopup();
-    // await createUserDocuFromAuth(user);
   };
 
   const handleChange = (e) => {
@@ -49,14 +48,14 @@ const LoginForm = () => {
           alert("Email not registered");
           break;
         default:
-          console.log("There was an error logging in");
+          alert("There was an error logging in");
       }
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Already have an account?</h2>
+    <sc.LoginContainer>
+      <sc.LoginContainerText>Already have an account?</sc.LoginContainerText>
       <span>Login with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -75,14 +74,18 @@ const LoginForm = () => {
           onChange={handleChange}
           required
         />
-        <div className="login-btn-container">
+        <sc.LoginBtnContainer>
           <Button type="submit">Login</Button>
-          <Button type="button" onClick={loginWithGoogle} btnType="google">
+          <Button
+            type="button"
+            onClick={loginWithGoogle}
+            btnType={BUTTON_TYPE_CLASSES.google}
+          >
             Google sign in
           </Button>
-        </div>
+        </sc.LoginBtnContainer>
       </form>
-    </div>
+    </sc.LoginContainer>
   );
 };
 

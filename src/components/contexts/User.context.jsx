@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 import {
   onAuthStateChangedListener,
-  createUserDocuFromAuth,
+  createUserDocFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
 // as the actual value you want to access
@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const usubscribe = onAuthStateChangedListener((user) => {
       if (user) {
-        createUserDocuFromAuth(user);
+        createUserDocFromAuth(user);
       }
       setCurrentUser(user);
     });
