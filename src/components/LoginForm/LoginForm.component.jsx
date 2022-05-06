@@ -45,10 +45,12 @@ const LoginForm = () => {
           alert("Incorrect email or password");
           break;
         case "auth/user-not-found":
-          alert("Email not registered");
+          alert("Incorrect email or password");
           break;
         default:
-          alert("There was an error logging in");
+          alert(
+            "Sorry, the website is under construction. Please try again later."
+          );
       }
     }
   };
