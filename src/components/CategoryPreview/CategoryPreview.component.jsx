@@ -15,19 +15,6 @@ const CategoryPreview = ({ title, products }) => {
       </sc.Preview>
     </sc.CategoryPreviewContainer>
   );
-
-  // return (
-  //   <div className="category-preview-container">
-  //     <h2>
-  //       <span className="title">{title.toUpperCase()}</span>
-  //     </h2>
-  //     <div className="preview">
-  //       {products.map((product) => {
-  //         return <ProductCard key={product.id} product={product} />;
-  //       })}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default CategoryPreview;
