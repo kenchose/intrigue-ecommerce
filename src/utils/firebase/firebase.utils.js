@@ -56,21 +56,11 @@ export const addCollectionAndDocs = async (collectionKey, objectsToAdd) => {
 };
 
 export const getCategoriesAndDocs = async () => {
-  // Get a reference to the collection we want to query
   const collectionRef = collection(db, "categories");
-  // genearte query by using query method with this collectionRef so that we can get a querySnapshot by using q on getDocs
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  // Get the data from the docSnapshot in this case we want the title and items
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    // the acc is the object we want to return for each subsequent iteration of the reducer.
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapShot) => docSnapShot.data());
 };
 
 export const createUserDocFromAuth = async (

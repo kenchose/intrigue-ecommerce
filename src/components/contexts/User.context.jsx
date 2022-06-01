@@ -1,62 +1,54 @@
-// import { createContext, useState, useEffect } from "react";
-import { createContext, useReducer, useEffect } from "react";
+// import { createContext, useState, useEffect, useReducer } from "react";
+// import { userActionTypes } from "../../store/user/user.types";
 
-import {
-  onAuthStateChangedListener,
-  createUserDocFromAuth,
-} from "../../utils/firebase/firebase.utils";
+// import {
+//   onAuthStateChangedListener,
+//   createUserDocFromAuth,
+// } from "../../utils/firebase/firebase.utils";
 
-// as the actual value you want to access
-export const UserContext = createContext({
-  currentUser: null,
-  setCurrentUser: () => null,
-});
+// export const UserContext = createContext({
+//   currentUser: null,
+//   setCurrentUser: () => null,
+// });
+// const initialState = {
+//   currentUser: null,
+// };
 
-const userActionTypes = {
-  SET_CURRENT_USER: "SET_CURRENT_USER",
-};
+// const userReducer = (state, action) => {
+//   // console.log("action", action);
+//   const { type, payload } = action;
 
-const userReducer = (state, action) => {
-  // console.log("action", action);
-  const { type, payload } = action;
+//   switch (type) {
+//     case userActionTypes.SET_CURRENT_USER:
+//       return {
+//         ...state,
+//         currentUser: payload,
+//       };
+//     default:
+//       throw new Error(`Unhandled type ${type} in userReducer`);
+//   }
+// };
 
-  switch (type) {
-    case userActionTypes.SET_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: payload,
-      };
-    default:
-      throw new Error(`Unhandled type ${type} in userReducer`);
-  }
-};
+// export const UserProvider = ({ children }) => {
+//   const [state, dispatch] = useReducer(userReducer, initialState);
+//   const { currentUser } = state;
 
-const initialState = {
-  currentUser: null,
-};
+//   const setCurrentUser = (user) => {
+//     dispatch({ type: userActionTypes.SET_CURRENT_USER, payload: user });
+//   };
 
-export const UserProvider = ({ children }) => {
-  // const [currentUser, setCurrentUser] = useState(null);
-  const [state, dispatch] = useReducer(userReducer, initialState);
-  const { currentUser } = state;
-  // console.log("currentUser", currentUser);
+//   const value = { currentUser, setCurrentUser };
 
-  const setCurrentUser = (user) => {
-    dispatch({ type: userActionTypes.SET_CURRENT_USER, payload: user });
-  };
+//   // useEffect(() => {
+//   //   const usubscribe = onAuthStateChangedListener((user) => {
+//   //     if (user) {
+//   //       createUserDocFromAuth(user);
+//   //     }
+//   //     setCurrentUser(user);
+//   //   });
 
-  const value = { currentUser, setCurrentUser };
+//   //   return usubscribe;
+//   // }, []);
 
-  useEffect(() => {
-    const usubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocFromAuth(user);
-      }
-      setCurrentUser(user);
-    });
-
-    return usubscribe;
-  }, []);
-
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
-};
+//   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+// };
