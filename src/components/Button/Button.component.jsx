@@ -17,15 +17,6 @@ const Button = ({ children, btnType, ...otherProps }) => {
   const CustomButton = getButton(btnType);
 
   return <CustomButton {...otherProps}>{children}</CustomButton>;
-
-  // return (
-  //   <button
-  //     className={`btn-container ${BUTTON_TYPE_CLASSES[btnType]}`}
-  //     {...otherProps}
-  //   >
-  //     {children}
-  //   </button>
-  // );
 };
 
 export default Button;

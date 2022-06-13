@@ -1,5 +1,6 @@
 import { categoriesActionType } from "./category.types";
-import { createAction } from "../../utils/reducer/reducer.utils";
 
-export const setCategories = (categories) =>
-  createAction(categoriesActionType.SET_CATEGORIES, categories);
+export const setCategories = (categories) => ({
+  type: categoriesActionType.SET_CATEGORIES,
+  payload: categories,
+});

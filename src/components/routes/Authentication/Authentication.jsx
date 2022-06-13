@@ -10,13 +10,6 @@ const Authentication = () => {
       <SignUpForm />
     </sc.AuthenticationContainer>
   );
-
-  // return (
-  //   <div className="authentication-container">
-  //     <LoginForm />
-  //     <SignUpForm />
-  //   </div>
-  // );
 };
 
 export default Authentication;
