@@ -1,5 +1,3 @@
-// import { CartContext } from "../contexts/Cart.context";
-// import { Fragment, useContext } from "react";
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -15,7 +13,6 @@ import { ReactComponent as IntrigueLogo } from "../../assets/crown-logo.svg";
 import * as sc from "./NavigationBar.styles";
 
 const NavigationBar = () => {
-  // const { isCartOpen } = useContext(CartContext);
   const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
 
