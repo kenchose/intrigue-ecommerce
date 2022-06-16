@@ -25,12 +25,16 @@ const Category = () => {
   return (
     <Fragment>
       <sc.Title>{category.toUpperCase()}</sc.Title>
-      <sc.CategoryContainer>
-        {products &&
-          products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
-      </sc.CategoryContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <sc.CategoryContainer>
+          {products &&
+            products.map((product) => {
+              return <ProductCard key={product.id} product={product} />;
+            })}
+        </sc.CategoryContainer>
+      )}
     </Fragment>
   );
 };

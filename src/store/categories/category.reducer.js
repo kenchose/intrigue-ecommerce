@@ -18,18 +18,18 @@ export const categoriesReducer = (
     //     ...state,
     //     categories: payload,
     //   };
-    case categoriesActionType.SET_CATEGORY_START:
+    case categoriesActionType.FETCH_CATEGORIES_START:
       return {
         ...state,
         isLoading: true,
       };
-    case categoriesActionType.SET_CATEGORY_SUCCESS:
+    case categoriesActionType.FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
         isLoading: false,
         categories: payload,
       };
-    case categoriesActionType.SET_CATEGORY_FAILED:
+    case categoriesActionType.FETCH_CATEGORIES_FAILED:
       return {
         ...state,
         isLoading: false,
