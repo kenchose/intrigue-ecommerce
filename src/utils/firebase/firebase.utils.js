@@ -41,7 +41,7 @@ export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-const db = getFirestore();
+export const db = getFirestore();
 
 export const addCollectionAndDocs = async (collectionKey, objectsToAdd) => {
   const collectionRef = collection(db, collectionKey);
@@ -60,7 +60,7 @@ export const getCategoriesAndDocs = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((docSnapShot) => docSnapShot.data());
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocFromAuth = async (
@@ -71,9 +71,9 @@ export const createUserDocFromAuth = async (
 
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  const userSnapShot = await getDoc(userDocRef);
+  const userSnapshot = await getDoc(userDocRef);
 
-  if (!userSnapShot.exists()) {
+  if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
