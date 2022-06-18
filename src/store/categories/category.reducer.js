@@ -13,11 +13,6 @@ export const categoriesReducer = (
   const { type, payload } = action;
 
   switch (type) {
-    // case categoriesActionType.SET_CATEGORIES:
-    //   return {
-    //     ...state,
-    //     categories: payload,
-    //   };
     case categoriesActionType.FETCH_CATEGORIES_START:
       return {
         ...state,
