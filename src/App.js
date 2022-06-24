@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import {
-  onAuthStateChangedListener,
-  createUserDocFromAuth,
-} from "./utils/firebase/firebase.utils";
+// import {
+//   getCurrentUser,
+//   onAuthStateChangedListener,
+//   createUserDocFromAuth,
+// } from "./utils/firebase/firebase.utils";
 
-import { setCurrentUser } from "./store/user/user.action";
+// import { setCurrentUser } from "./store/user/user.action";
+import { checkUserSession } from "./store/user/user.action.js";
 
 import Authentication from "./components/routes/Authentication/Authentication.jsx";
 import NavigationBar from "./components/NavigationBar/NavigationBar.component.jsx";
@@ -19,14 +21,17 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
+    dispatch(checkUserSession());
+    // getCurrentUser().then((user) => console.log(user));
+    // const unsubscribe = onAuthStateChangedListener((user) => {
+    //   console.log();
+    //   if (user) {
+    //     createUserDocFromAuth(user);
+    //   }
+    //   dispatch(setCurrentUser(user));
+    // });
 
-    return unsubscribe;
+    // return unsubscribe;
   }, [dispatch]);
 
   return (
