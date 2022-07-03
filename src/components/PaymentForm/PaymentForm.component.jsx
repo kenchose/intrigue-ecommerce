@@ -63,6 +63,7 @@ const PaymentForm = () => {
         <h2>Credit Card Payment: </h2>
         <CardElement />
         <sc.PaymentBtn
+          disabled={isProcessingPayment}
           isLoading={isProcessingPayment}
           btnType={BUTTON_TYPE_CLASSES.base}
         >

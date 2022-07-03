@@ -18,4 +18,9 @@ export const FormContainer = styled.form`
 export const PaymentBtn = styled(Button)`
   margin-left: auto;
   margin-top: 30px;
+  background-color: ${({ disabled }) => (disabled ? "#585858" : "")};
+
+  &:hover {
+    background-color: ${({ disabled }) => (disabled ? "#585858" : "")};
+  }
 `;
