@@ -36,10 +36,10 @@ const clearCartItem = (cartItems, cartItemToRemove) => {
   return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
 };
 
-export const setIsCartOpen = (boolean) => ({
-  type: cartActionTypes.SET_IS_CART_OPEN,
-  payload: boolean,
-});
+// export const setIsCartOpen = (boolean) => ({
+//   type: cartActionTypes.SET_IS_CART_OPEN,
+//   payload: boolean,
+// });
 
 export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCartItem(cartItems, productToAdd);

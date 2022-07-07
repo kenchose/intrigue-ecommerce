@@ -1,9 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { selectIsCartOpen } from "../../store/cart/cart.selector";
+// import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { signOutStart } from "../../store/user/user.action";
@@ -15,8 +15,25 @@ import { ReactComponent as IntrigueLogo } from "../../assets/crown-logo.svg";
 import * as sc from "./NavigationBar.styles";
 
 const NavigationBar = () => {
-  const isCartOpen = useSelector(selectIsCartOpen);
+  // const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
+
+  const [cartDropdown, setCartdropdown] = useState(false);
+  // const cartDropdownList = useRef(null);
+
+  // useEffect(() => {
+  //   const toggleCart = (event) => {
+  //     if (
+  //       cartDropdownList.current &&
+  //     ) {
+  //       setCartdropdown(false);
+  //     }
+  //   };
+  //   document.addEventListener("click", toggleCart);
+  //   return () => {
+  //     document.addEventListener("click", toggleCart);
+  //   };
+  // }, [cartDropdown]);
 
   const dispatch = useDispatch();
 
@@ -41,9 +58,9 @@ const NavigationBar = () => {
           ) : (
             <sc.NavLink to="auth">LOGIN</sc.NavLink>
           )}
-          <CartIcon />
+          <CartIcon onClick={() => setCartdropdown(!cartDropdown)} />
         </sc.NavLinksContainer>
-        {isCartOpen && <CartDropdown />}
+        {cartDropdown && <CartDropdown />}
       </sc.NavContainer>
       <Outlet />
     </Fragment>
