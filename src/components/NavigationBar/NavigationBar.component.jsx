@@ -18,7 +18,8 @@ const NavigationBar = () => {
   // const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
 
-  const [cartDropdown, setCartdropdown] = useState(false);
+  const [cartDropdown, setCartDropdown] = useState(false);
+  console.log("cartDropdown", cartDropdown);
   // const cartDropdownList = useRef(null);
 
   // useEffect(() => {
@@ -58,7 +59,7 @@ const NavigationBar = () => {
           ) : (
             <sc.NavLink to="auth">LOGIN</sc.NavLink>
           )}
-          <CartIcon onClick={() => setCartdropdown(!cartDropdown)} />
+          <CartIcon onClick={() => setCartDropdown(!cartDropdown)} />
         </sc.NavLinksContainer>
         {cartDropdown && <CartDropdown />}
       </sc.NavContainer>
