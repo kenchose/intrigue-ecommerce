@@ -18,23 +18,15 @@ const NavigationBar = () => {
   // const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
 
-  const [cartDropdown, setCartDropdown] = useState(false);
-  console.log("cartDropdown", cartDropdown);
-  // const cartDropdownList = useRef(null);
+  const [cartDropdownIsOpen, setCartDropdownIsOpen] = useState(false);
+  const ref = useRef(null);
 
-  // useEffect(() => {
-  //   const toggleCart = (event) => {
-  //     if (
-  //       cartDropdownList.current &&
-  //     ) {
-  //       setCartdropdown(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", toggleCart);
-  //   return () => {
-  //     document.addEventListener("click", toggleCart);
-  //   };
-  // }, [cartDropdown]);
+  useEffect(() => {
+    document.addEventListener("click", closeCartDropdown);
+    return () => {
+      document.removeEventListener("click", closeCartDropdown);
+    };
+  }, [cartDropdownIsOpen]);
 
   const dispatch = useDispatch();
 
@@ -43,6 +35,15 @@ const NavigationBar = () => {
   // };
 
   const signOutHandler = () => dispatch(signOutStart());
+
+  const toggleDropdown = () => {
+    setCartDropdownIsOpen(!cartDropdownIsOpen);
+  };
+
+  const closeCartDropdown = (event) => {
+    if (ref.current && !ref.current.contains(event.target))
+      setCartDropdownIsOpen(false);
+  };
 
   return (
     <Fragment>
@@ -59,9 +60,9 @@ const NavigationBar = () => {
           ) : (
             <sc.NavLink to="auth">LOGIN</sc.NavLink>
           )}
-          <CartIcon onClick={() => setCartDropdown(!cartDropdown)} />
+          <CartIcon toggleDropdown={toggleDropdown} ref={ref} />
         </sc.NavLinksContainer>
-        {cartDropdown && <CartDropdown />}
+        {cartDropdownIsOpen && <CartDropdown />}
       </sc.NavContainer>
       <Outlet />
     </Fragment>

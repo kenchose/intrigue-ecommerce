@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import React, { forwardRef } from "react";
+import { /*useDispatch,*/ useSelector } from "react-redux";
 
 import {
   selectCartCount,
@@ -8,38 +9,19 @@ import {
 
 import * as sc from "./CartIcon.styles";
 
-const CartIcon = () => {
+const CartIcon = forwardRef(({ toggleDropdown }, ref) => {
   // const dispatch = useDispatch();
 
   const cartCount = useSelector(selectCartCount);
   // const cartOpen = useSelector(selectIsCartOpen);
   // const toggleIsCartOpen = () => dispatch(setIsCartOpen(!cartOpen));
 
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", toggleIsCartOpen, false);
-  //   return () => {
-  //     document.addEventListener("mousedown", toggleIsCartOpen, false);
-  //   };
-  // }, []);
-
-  // const toggleIsCartOpen = () => setOpenDropdownList(!openDropdownList);
-
-  // const toggleIsCartOpen = (event) => {
-  //   if (dropdownList.current && !dropdownList.current.contains(event.target)) {
-  //     console.log("what is current", dropdownList.current);
-  //     console.log("wht is contain", dropdownList.contains(event.target));
-  //     setOpenDropdownList(!openDropdownList);
-  //   }
-  //   console.log("what is dropdown after click", openDropdownList);
-  // };
-
   return (
-    <sc.CartIconContainer>
-      {/* <sc.CartIconContainer onClick={toggleIsCartOpen}>  */}
+    <sc.CartIconContainer onClick={toggleDropdown} ref={ref}>
       <sc.ShoppingIcon />
       <sc.ItemCount>{cartCount}</sc.ItemCount>
     </sc.CartIconContainer>
   );
-};
+});
 
 export default CartIcon;
