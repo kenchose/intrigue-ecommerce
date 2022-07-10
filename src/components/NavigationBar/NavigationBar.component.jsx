@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // import { signOutUser } from "../../utils/firebase/firebase.utils";
-// import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { signOutStart } from "../../store/user/user.action";
@@ -15,7 +14,6 @@ import { ReactComponent as IntrigueLogo } from "../../assets/crown-logo.svg";
 import * as sc from "./NavigationBar.styles";
 
 const NavigationBar = () => {
-  // const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
 
   const [cartDropdownIsOpen, setCartDropdownIsOpen] = useState(false);
