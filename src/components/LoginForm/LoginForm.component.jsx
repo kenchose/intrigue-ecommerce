@@ -71,7 +71,7 @@ const LoginForm = () => {
       <span>Login with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
-          label={"Email"}
+          label="Email"
           type="email"
           name="email"
           value={email}
@@ -79,7 +79,7 @@ const LoginForm = () => {
           required
         />
         <FormInput
-          label={"Password"}
+          label="Password"
           type="password"
           name="password"
           value={password}

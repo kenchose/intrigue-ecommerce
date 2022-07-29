@@ -65,13 +65,14 @@ export const getCategoriesAndDocs = async () => {
 
 export const createUserDocFromAuth = async (
   userAuth,
-  additionalDetails = {}
+  additionalInformation = {}
 ) => {
   if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
+
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -81,7 +82,7 @@ export const createUserDocFromAuth = async (
         displayName,
         email,
         createdAt,
-        ...additionalDetails,
+        ...additionalInformation,
       });
     } catch (error) {
       console.log("Error creating user", error.message);
@@ -89,7 +90,6 @@ export const createUserDocFromAuth = async (
   }
 
   return userSnapshot;
-  // return userDocRef;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -97,7 +97,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const loginWithEmailAndPassword = async (email, password) => {
+export const loginAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
