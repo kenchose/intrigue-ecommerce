@@ -1,6 +1,13 @@
-import { categoriesActionType } from "./category.types";
+import { categoriesActionType, Category } from "./category.types";
+import { CategoryAction } from "./category.action";
 
-export const categoriesInitialState = {
+export type CategoriesState = {
+  readonly categories: Category[];
+  readonly isLoading: boolean;
+  readonly error: Error | null;
+};
+
+export const categoriesInitialState: CategoriesState = {
   categories: [],
   isLoading: false,
   error: null,
@@ -8,11 +15,9 @@ export const categoriesInitialState = {
 
 export const categoriesReducer = (
   state = categoriesInitialState,
-  action = {}
+  action = {} as CategoryAction
 ) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case categoriesActionType.FETCH_CATEGORIES_START:
       return {
         ...state,
@@ -22,13 +27,13 @@ export const categoriesReducer = (
       return {
         ...state,
         isLoading: false,
-        categories: payload,
+        categories: action.payload,
       };
     case categoriesActionType.FETCH_CATEGORIES_FAILED:
       return {
         ...state,
         isLoading: false,
-        error: payload,
+        error: action.payload,
       };
     default:
       return state;
