@@ -33,7 +33,7 @@ const SignUpForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handlSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password !== confirmationPassword) {
@@ -63,9 +63,9 @@ const SignUpForm = () => {
     <sc.SignUpContainer>
       <sc.SignUpText>Don't have an account?</sc.SignUpText>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handlSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormInput
-          label={"Display Name"}
+          label="Display Name"
           type="text"
           name="displayName"
           value={displayName}
@@ -73,7 +73,7 @@ const SignUpForm = () => {
           required
         />
         <FormInput
-          label={"Email"}
+          label="Email"
           type="email"
           name="email"
           value={email}
@@ -81,7 +81,7 @@ const SignUpForm = () => {
           required
         />
         <FormInput
-          label={"Password"}
+          label="Password"
           type="password"
           name="password"
           value={password}
@@ -89,7 +89,7 @@ const SignUpForm = () => {
           required
         />
         <FormInput
-          label={"Confirmation Password"}
+          label="Confirmation Password"
           type="password"
           name="confirmationPassword"
           value={confirmationPassword}

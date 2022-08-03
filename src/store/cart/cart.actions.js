@@ -1,5 +1,5 @@
 import { cartActionTypes } from "./cart.types";
-// import { createAction } from "../../utils/reducer/reducer.utils";
+import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -38,15 +38,15 @@ const clearCartItem = (cartItems, cartItemToRemove) => {
 
 export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
-  return { type: cartActionTypes.SET_CART_ITEMS, payload: newCartItems };
+  return createAction(cartActionTypes.SET_CART_ITEMS, newCartItems);
 };
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const newCartItems = removeCartItem(cartItems, cartItemToRemove);
-  return { type: cartActionTypes.SET_CART_ITEMS, payload: newCartItems };
+  return createAction(cartActionTypes.SET_CART_ITEMS, newCartItems);
 };
 
 export const clearItemFromCart = (cartItems, cartItemToClear) => {
   const newCartItems = clearCartItem(cartItems, cartItemToClear);
-  return { type: cartActionTypes.SET_CART_ITEMS, payload: newCartItems };
+  return createAction(cartActionTypes.SET_CART_ITEMS, newCartItems);
 };
